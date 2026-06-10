@@ -17,7 +17,7 @@
 │ │ │   requires: {N5}, {N8}
 │ │ │   [discovered-by: 0479a99]
 │ │ │   [parent-error: src/di/container.ts:12:23: TS2304 Cannot find name 'SmtpNotificationGateway']
-│ │ │ │ [ ] {N8} Create NotificationFailedError class (src/notifications/NotificationFailedError.ts)
+│ │ │ │ [x] {N8} Create NotificationFailedError class (src/notifications/NotificationFailedError.ts)
 │ │ │ │   [discovered-by: 0479a99]
 │ │ │ │   [parent-error: src/notifications/SmtpNotificationGateway.ts:15:17: TS2304 Cannot find name 'NotificationFailedError']
 │ │ [ ] {N6} Pass a NotificationGateway stub in billing test fixtures (tests/billing-service.test.ts:30,44)
