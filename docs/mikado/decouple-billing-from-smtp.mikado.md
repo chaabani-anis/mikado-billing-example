@@ -9,7 +9,7 @@
 │ │ │ [x] {N5} Create NotificationGateway interface with notifyInvoiceIssued (src/notifications/NotificationGateway.ts)
 │ │ │   [discovered-by: af5c92e]
 │ │ │   [parent-error: src/services/BillingService.ts:4:37: TS2307 Cannot find module '../notifications/NotificationGateway.js']
-│ │ [ ] {N4} Wire SmtpNotificationGateway into the DI container (src/di/container.ts:12)
+│ │ [x] {N4} Wire SmtpNotificationGateway into the DI container (src/di/container.ts:12)
 │ │   requires: {N3}, {N5}, {N7}
 │ │   [discovered-by: af5c92e]
 │ │   [parent-error: src/di/container.ts:14:21: TS2554 Expected 3 arguments, but got 2]
