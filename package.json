@@ -1,0 +1,15 @@
+{
+  "name": "mikado-billing-example",
+  "version": "1.0.0",
+  "description": "Companion repo for the Mikado Method skill articles: decoupling a BillingService from its SMTP client, one atomic commit per graph node.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test \"dist/tests/*.test.js\""
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  },
+  "license": "MIT"
+}
