@@ -2,7 +2,7 @@
 │ [ ] {N1} Replace direct SmtpClient calls in BillingService with NotificationGateway calls (src/services/BillingService.ts:22)
 │   [discovered-by: d886144]
 │   [parent-error: src/services/BillingService.ts:20:16: TS2339 Property 'gateway' does not exist on type 'BillingService']
-│ │ [ ] {N3} Add NotificationGateway parameter to BillingService constructor (src/services/BillingService.ts:8)
+│ │ [x] {N3} Add NotificationGateway parameter to BillingService constructor (src/services/BillingService.ts:8)
 │ │   requires: {N5}
 │ │   [discovered-by: af5c92e]
 │ │   [parent-error: src/services/BillingService.ts:4:37: TS2307 Cannot find module '../notifications/NotificationGateway.js']
