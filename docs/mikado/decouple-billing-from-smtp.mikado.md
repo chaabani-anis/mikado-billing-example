@@ -20,7 +20,7 @@
 │ │ │ │ [x] {N8} Create NotificationFailedError class (src/notifications/NotificationFailedError.ts)
 │ │ │ │   [discovered-by: 0479a99]
 │ │ │ │   [parent-error: src/notifications/SmtpNotificationGateway.ts:15:17: TS2304 Cannot find name 'NotificationFailedError']
-│ │ [ ] {N6} Pass a NotificationGateway stub in billing test fixtures (tests/billing-service.test.ts:30,44)
+│ │ [x] {N6} Pass a NotificationGateway stub in billing test fixtures (tests/billing-service.test.ts:30,44)
 │ │   requires: {N3}, {N5}
 │ │   [discovered-by: af5c92e]
 │ │   [parent-error: tests/billing-service.test.ts:30:19: TS2554 Expected 3 arguments, but got 2]

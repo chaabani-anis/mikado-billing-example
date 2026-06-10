@@ -4,6 +4,20 @@ import * as net from 'node:net';
 import { BillingService } from '../src/services/BillingService.js';
 import { InvoiceRepository } from '../src/domain/InvoiceRepository.js';
 import { SmtpClient } from '../src/infrastructure/SmtpClient.js';
+import { NotificationGateway } from '../src/notifications/NotificationGateway.js';
+import { Invoice } from '../src/domain/Invoice.js';
+
+function notificationStub(): { gateway: NotificationGateway; notified: Invoice[] } {
+  const notified: Invoice[] = [];
+  return {
+    notified,
+    gateway: {
+      async notifyInvoiceIssued(invoice) {
+        notified.push(invoice);
+      },
+    },
+  };
+}
 
 /** Boots a minimal fake SMTP server — just to test invoice logic. */
 function startFakeSmtpServer(): Promise<{ port: number; received: string[]; close: () => void }> {
@@ -27,7 +41,8 @@ test('issuing an invoice persists it and notifies the customer', async () => {
   const smtpServer = await startFakeSmtpServer();
   const repository = new InvoiceRepository();
   const smtp = new SmtpClient('127.0.0.1', smtpServer.port);
-  const service = new BillingService(repository, smtp);
+  const { gateway } = notificationStub();
+  const service = new BillingService(repository, smtp, gateway);
 
   const invoice = await service.issueInvoice('alice@example.com', 4990);
 
@@ -41,7 +56,8 @@ test('invoice amounts are formatted in euros in the notification', async () => {
   const smtpServer = await startFakeSmtpServer();
   const repository = new InvoiceRepository();
   const smtp = new SmtpClient('127.0.0.1', smtpServer.port);
-  const service = new BillingService(repository, smtp);
+  const { gateway } = notificationStub();
+  const service = new BillingService(repository, smtp, gateway);
 
   await service.issueInvoice('bob@example.com', 12550);
 
