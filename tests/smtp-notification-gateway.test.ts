@@ -30,6 +30,7 @@ test('sends the invoice notification over SMTP', async () => {
   await gateway.notifyInvoiceIssued(new Invoice(7, 'alice@example.com', 4990, new Date()));
 
   assert.match(smtpServer.received.join(''), /Invoice #7/);
+  assert.match(smtpServer.received.join(''), /49\.90 EUR/);
   smtpServer.close();
 });
 

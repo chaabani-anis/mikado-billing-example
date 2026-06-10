@@ -7,8 +7,7 @@ export class BillingService {
   constructor(
     private readonly repository: InvoiceRepository,
     private readonly smtp: SmtpClient,
-    // Parallel change, expand phase: optional while call sites migrate ({N4}, {N6}).
-    private readonly gateway?: NotificationGateway,
+    private readonly gateway: NotificationGateway,
   ) {}
 
   async issueInvoice(customerEmail: string, amountInCents: number): Promise<Invoice> {
@@ -20,13 +19,7 @@ export class BillingService {
     );
     this.repository.save(invoice);
 
-    // Billing knows the notification channel — and a failure here
-    // blocks invoice issuance entirely.
-    await this.smtp.send(
-      customerEmail,
-      `Invoice #${invoice.id}`,
-      `Amount due: ${(amountInCents / 100).toFixed(2)} EUR`,
-    );
+    await this.gateway.notifyInvoiceIssued(invoice);
 
     return invoice;
   }
