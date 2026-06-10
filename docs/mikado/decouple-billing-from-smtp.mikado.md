@@ -13,7 +13,7 @@
 │ │   requires: {N3}, {N5}, {N7}
 │ │   [discovered-by: af5c92e]
 │ │   [parent-error: src/di/container.ts:14:21: TS2554 Expected 3 arguments, but got 2]
-│ │ │ [ ] {N7} Implement SmtpNotificationGateway adapter (SmtpClient via constructor + notifyInvoiceIssued body)
+│ │ │ [x] {N7} Implement SmtpNotificationGateway adapter (SmtpClient via constructor + notifyInvoiceIssued body)
 │ │ │   requires: {N5}, {N8}
 │ │ │   [discovered-by: 0479a99]
 │ │ │   [parent-error: src/di/container.ts:12:23: TS2304 Cannot find name 'SmtpNotificationGateway']
