@@ -1,12 +1,10 @@
 import { Invoice } from '../domain/Invoice.js';
 import { InvoiceRepository } from '../domain/InvoiceRepository.js';
-import { SmtpClient } from '../infrastructure/SmtpClient.js';
 import { NotificationGateway } from '../notifications/NotificationGateway.js';
 
 export class BillingService {
   constructor(
     private readonly repository: InvoiceRepository,
-    private readonly smtp: SmtpClient,
     private readonly gateway: NotificationGateway,
   ) {}
 

@@ -13,6 +13,6 @@ export function buildContainer(): Container {
   const gateway = new SmtpNotificationGateway(smtp);
 
   return {
-    billingService: new BillingService(repository, smtp, gateway),
+    billingService: new BillingService(repository, gateway),
   };
 }

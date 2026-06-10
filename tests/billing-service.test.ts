@@ -2,7 +2,6 @@ import { test } from 'node:test';
 import * as assert from 'node:assert/strict';
 import { BillingService } from '../src/services/BillingService.js';
 import { InvoiceRepository } from '../src/domain/InvoiceRepository.js';
-import { SmtpClient } from '../src/infrastructure/SmtpClient.js';
 import { NotificationGateway } from '../src/notifications/NotificationGateway.js';
 import { Invoice } from '../src/domain/Invoice.js';
 
@@ -18,13 +17,10 @@ function notificationStub(): { gateway: NotificationGateway; notified: Invoice[]
   };
 }
 
-// No fake SMTP server anymore. The unused SmtpClient parameter goes away with {N2}.
-const unusedSmtp = () => new SmtpClient('127.0.0.1', 1);
-
 test('issuing an invoice persists it and notifies the customer', async () => {
   const repository = new InvoiceRepository();
   const { gateway, notified } = notificationStub();
-  const service = new BillingService(repository, unusedSmtp(), gateway);
+  const service = new BillingService(repository, gateway);
 
   const invoice = await service.issueInvoice('alice@example.com', 4990);
 
@@ -36,7 +32,7 @@ test('issuing an invoice persists it and notifies the customer', async () => {
 test('the notified invoice carries the amount due', async () => {
   const repository = new InvoiceRepository();
   const { gateway, notified } = notificationStub();
-  const service = new BillingService(repository, unusedSmtp(), gateway);
+  const service = new BillingService(repository, gateway);
 
   await service.issueInvoice('bob@example.com', 12550);
 
